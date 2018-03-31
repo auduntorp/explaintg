@@ -6,8 +6,8 @@ def getTheories(text):
     try:
         with open(text) as f:
             data = f.readlines()
-    except:
-        return 'File not found!'
+    except Exception as e:
+        return e
     for line in data:
         if line.strip() == '':
             continue

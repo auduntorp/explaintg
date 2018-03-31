@@ -1,8 +1,8 @@
 from flask import Flask
 
-from describe_image import analyze
+#from describe_image import analyze
 from parser import getTheories
-from matcher import match
+#from matcher import match
 
 app = Flask(__name__)
 text = getTheories('theories.txt')

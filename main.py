@@ -1,11 +1,11 @@
-from flask import Flask, request, render_template
+#from flask import Flask, request, render_template
 
-from describe_image import analyze
-from parser import getTheories
-from matcher import match
+#from describe_image import analyze
+#rom parser import getTheories
+#from matcher import match
 
-app = Flask(__name__)
-text = getTheories('theories.txt')
+#app = Flask(__name__)
+#text = getTheories('theories.txt')
 
 @app.route('/', methods=['GET'])
 def hello_world():
@@ -33,4 +33,5 @@ def analyze_image():
         'No match found'
 
 if __name__ == '__main__':
-    app.run()
+    return 'Hello, Azure'
+    #app.run()

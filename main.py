@@ -1,41 +1,36 @@
-from flask import Flask
-from matcher import match
+from flask import Flask, request, render_template
 
-def getTheories(text):
-    theories = dict()
-    try:
-        with open(text, encoding="utf8") as f:
-            data = f.readlines()
-    except Exception as e:
-        return e
-    for line in data:
-        if line.strip() == '':
-            continue
-        try:
-            number = int(line)
-            mode = 'key'
-        except ValueError:
-            if mode == 'key':
-                key = line.strip()
-                theories[key] = ''
-                mode = 'value'
-                cnt  = 0
-            else:
-                if cnt > 0:
-                    theories[key] += '\n\n'
-                theories[key] += line.strip()
-                cnt = cnt + 1
-    return theories
+from describe_image import analyze
+from parser import getTheories
+from matcher import match
 
 app = Flask(__name__)
 text = getTheories('theories.txt')
 
-
-app = Flask(__name__)
-
-@app.route('/')
+@app.route('/', methods=['GET'])
 def hello_world():
-  return str(text)
+    print("get")
+    #return open('upload_photo.html', 'r').read()
+    return render_template('index.html')
+
+
+@app.route('/', methods=['POST'])
+def analyze_image():
+    print("post woo12")
+    #filename = request.form['file']
+    #print(filename)
+    print(request.files)
+    file = request.files['file']
+    print(file)
+    print('analyzing')
+    keywords = analyze(file)
+    print('matching')
+    m = match(keywords, text)
+    if m:
+        key, title, description = m
+        return render_template('explain.html', title=title)
+    else:
+        'No match found'
 
 if __name__ == '__main__':
-  app.run()
+    app.run()

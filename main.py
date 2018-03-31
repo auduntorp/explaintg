@@ -4,7 +4,7 @@ from matcher import match
 def getTheories(text):
     theories = dict()
     try:
-        with open(text) as f:
+        with open(text, encoding="utf8") as f:
             data = f.readlines()
     except Exception as e:
         return e

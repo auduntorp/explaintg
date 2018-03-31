@@ -1,4 +1,5 @@
 from flask import Flask
+from matcher import match
 
 def getTheories(text):
     theories = dict()

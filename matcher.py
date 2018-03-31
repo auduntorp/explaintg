@@ -5,13 +5,13 @@ def match(keywords, theories):
 
 	for key in keywords:
 		for title in theories.keys():
-			if key in title:
+			if key in title.lower():
 				description = theories[title]
 				return key, title, description
 
 	for key in keywords:
 		for description in theories.values():
-			if key in description:
+			if key in description.lower():
 				for title in theories.keys():
 					if theories[title] == description:
 						return key, title, description

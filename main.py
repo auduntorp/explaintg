@@ -11,7 +11,7 @@ def hello_world():
 
 
 @app.route('/', methods=['POST'])
-def hello_world():
+def analyze_image():
     return str(analyze(request.data))
 
 if __name__ == '__main__':

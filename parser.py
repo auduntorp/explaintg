@@ -1,5 +1,3 @@
-import argparse
-
 def getTheories(text):
 
 	theories = dict()
@@ -28,11 +26,3 @@ def getTheories(text):
 				theories[key] += line.strip()
 				cnt = cnt + 1
 	return theories
-
-if __name__ == "__main__":
-	parser = argparse.ArgumentParser(description="Parse conspiracy thoeries")
-	parser.add_argument('text')
-	args = parser.parse_args()
-
-	t = getTheories(args.text)
-	print(t)

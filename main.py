@@ -1,24 +1,21 @@
 from flask import Flask
 
 def getTheories(text):
-
     theories = dict()
-
-    with open(text) as f:
-        data = f.readlines()
-
+    try:
+        with open(text) as f:
+            data = f.readlines()
+    except:
+        return 'File not found!'
     for line in data:
         if line.strip() == '':
             continue
-
         try:
             number = int(line)
-            #print(str(number) + ' ', end='')
             mode = 'key'
         except ValueError:
             if mode == 'key':
                 key = line.strip()
-                #print(key)
                 theories[key] = ''
                 mode = 'value'
                 cnt  = 0

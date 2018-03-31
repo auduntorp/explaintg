@@ -25,9 +25,12 @@ def analyze_image():
     print('analyzing')
     keywords = analyze(file)
     print('matching')
-    
-    print(str(match(keywords, text)))
-    return "Hello world!"
+    m = match(keywords, text)
+    if m:
+        key, title, description = m
+        return render_template('explain.html', title=title)
+    else:
+        'No match found'
 
 if __name__ == '__main__':
     app.run()

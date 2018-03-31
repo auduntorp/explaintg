@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return '<input type="file" accept="image/*" capture="camera">'
 
 
 @app.route('/', methods=['POST'])
